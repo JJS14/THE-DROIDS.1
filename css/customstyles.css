@@ -1,0 +1,20 @@
+.greenclass{
+    color:green
+}
+.MSB{
+    color: white;
+    font-size: 50px;
+   margin:0 auto;
+   padding-bottom: 10px;
+    text-align: center;
+}
+
+.masthead-heading {
+    text-align: center;
+    width: 100%;
+}
+
+.masthead {
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+}

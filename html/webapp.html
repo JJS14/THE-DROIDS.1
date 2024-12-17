@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Ops 7</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        #gameContainer {
+            position: relative;
+            margin: 20px auto;
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border: 2px solid #000;
+            overflow: hidden;
+        }
+
+        .stickFigure {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .bullet {
+            position: absolute;
+            width: 5px;
+            height: 10px;
+            background-color: black;
+        }
+
+        #startButton, #playAgainButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #endMessage {
+            display: none;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .gun {
+            position: absolute;
+            width: 20px;
+            height: 5px;
+            background-color: black;
+        }
+
+        .red .gun {
+            left: -15px;
+        }
+
+        .blue .gun {
+            right: -15px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html">Back</a>
+    <h1>Black Ops 7</h1>
+    <div style="margin: 10px; font-family: Arial;">
+        <h3>Controls:</h3>
+        <p>
+            ↑ Up Arrow: Move Up<br>
+            ↓ Down Arrow: Move Down<br>
+            ← Left Arrow: Move Left<br>
+            → Right Arrow: Move Right<br>
+            Space Bar: Shoot
+        </p>
+    </div>
+    <div id="gameContainer">
+        <div class="stickFigure red" id="enemy1" style="top: 50px; left: 50px;">
+            <div class="gun"></div>
+        </div>
+        <div class="stickFigure red" id="enemy2" style="top: 200px; left: 200px;">
+            <div class="gun"></div>
+        </div>
+        <div class="stickFigure blue" id="player" style="top: 350px; left: 140px;">
+            <div class="gun"></div>
+        </div>
+    </div>
+    <button id="startButton">Start Game</button>
+    <div id="endMessage">You fought well!</div>
+    <center><button id="playAgainButton" style="display: none;">Play Again</button></center>
+
+    <script>
+        const gameContainer = document.getElementById("gameContainer");
+        const player = document.getElementById("player");
+        const enemy1 = document.getElementById("enemy1");
+        const enemy2 = document.getElementById("enemy2");
+        const startButton = document.getElementById("startButton");
+        const playAgainButton = document.getElementById("playAgainButton");
+        const endMessage = document.getElementById("endMessage");
+
+        let gameActive = false;
+        let enemiesLeft = 2;
+
+        // Start the game
+        startButton.addEventListener("click", () => {
+            gameActive = true;
+            startButton.style.display = "none";
+            playAgainButton.style.display = "none";
+            endMessage.style.display = "none";
+            resetGame();
+        });
+
+        playAgainButton.addEventListener("click", () => {
+            startButton.click();
+        });
+
+        // Move the player
+        document.addEventListener("keydown", (event) => {
+            if (!gameActive) return;
+            const playerRect = player.getBoundingClientRect();
+            const containerRect = gameContainer.getBoundingClientRect();
+
+            switch (event.key) {
+                case "ArrowUp":
+                    if (playerRect.top > containerRect.top) {
+                        player.style.top = `${player.offsetTop - 10}px`;
+                    }
+                    break;
+                case "ArrowDown":
+                    if (playerRect.bottom < containerRect.bottom) {
+                        player.style.top = `${player.offsetTop + 10}px`;
+                    }
+                    break;
+                case "ArrowLeft":
+                    if (playerRect.left > containerRect.left) {
+                        player.style.left = `${player.offsetLeft - 10}px`;
+                    }
+                    break;
+                case "ArrowRight":
+                    if (playerRect.right < containerRect.right) {
+                        player.style.left = `${player.offsetLeft + 10}px`;
+                    }
+                    break;
+                case " ": // Space bar to shoot
+                    shootBullet();
+                    break;
+            }
+        });
+
+        // Shoot a bullet
+        function shootBullet() {
+            const bullet = document.createElement("div");
+            bullet.className = "bullet";
+            bullet.style.top = `${player.offsetTop}px`;
+            bullet.style.left = `${player.offsetLeft + 7}px`;
+            gameContainer.appendChild(bullet);
+
+            const interval = setInterval(() => {
+                bullet.style.top = `${bullet.offsetTop - 10}px`;
+
+                // Check if the bullet hits an enemy
+                if (checkCollision(bullet, enemy1)) {
+                    enemy1.style.display = "none";
+                    removeBullet(bullet, interval);
+                    enemiesLeft--;
+                    checkGameEnd();
+                } else if (checkCollision(bullet, enemy2)) {
+                    enemy2.style.display = "none";
+                    removeBullet(bullet, interval);
+                    enemiesLeft--;
+                    checkGameEnd();
+                } else if (bullet.offsetTop < 0) {
+                    removeBullet(bullet, interval);
+                }
+            }, 20);
+        }
+
+        // Remove a bullet
+        function removeBullet(bullet, interval) {
+            clearInterval(interval);
+            bullet.remove();
+        }
+
+        // Check collision
+        function checkCollision(bullet, enemy) {
+            const bulletRect = bullet.getBoundingClientRect();
+            const enemyRect = enemy.getBoundingClientRect();
+
+            return (
+                bulletRect.top < enemyRect.bottom &&
+                bulletRect.bottom > enemyRect.top &&
+                bulletRect.left < enemyRect.right &&
+                bulletRect.right > enemyRect.left
+            );
+        }
+
+        // Check if the game has ended
+        function checkGameEnd() {
+            if (enemiesLeft === 0) {
+                gameActive = false;
+                endMessage.textContent = "You fought well";
+                endMessage.style.display = "block";
+                playAgainButton.style.display = "block";
+            }
+        }
+
+        // Reset the game
+        function resetGame() {
+            enemiesLeft = 2;
+            enemy1.style.display = "block";
+            enemy2.style.display = "block";
+            // Reset to original positions
+            enemy1.style.top = "50px";
+            enemy1.style.left = "50px";
+            enemy2.style.top = "200px";
+            enemy2.style.left = "200px";
+            player.style.top = "350px";
+            player.style.left = "140px";
+            moveEnemies();  // Start enemy movement
+        }
+
+        // Add enemy movement
+        function moveEnemies() {
+            let enemy1Direction = 1;
+            let enemy2Direction = 1;
+            let enemy1Speed = 2;
+            let enemy2Speed = 1;
+
+            // Add shooting intervals for enemies
+            const enemy1ShootInterval = setInterval(() => {
+                if (gameActive && enemy1.style.display !== "none") {
+                    enemyShoot(enemy1);
+                }
+            }, 1000);  // Enemy 1 shoots every 1 second
+
+            const enemy2ShootInterval = setInterval(() => {
+                if (gameActive && enemy2.style.display !== "none") {
+                    enemyShoot(enemy2);
+                }
+            }, 1200);  // Enemy 2 shoots every 1.2 seconds
+
+            const moveInterval = setInterval(() => {
+                if (!gameActive) {
+                    clearInterval(moveInterval);
+                    clearInterval(enemy1ShootInterval);
+                    clearInterval(enemy2ShootInterval);
+                    return;
+                }
+
+                // Move enemy1 (faster)
+                let enemy1Left = enemy1.offsetLeft + (enemy1Speed * enemy1Direction);
+                if (enemy1Left > 250 || enemy1Left < 10) {
+                    enemy1Direction *= -1;
+                }
+                enemy1.style.left = `${enemy1Left}px`;
+
+                // Move enemy2 (slower)
+                let enemy2Left = enemy2.offsetLeft + (enemy2Speed * enemy2Direction);
+                if (enemy2Left > 250 || enemy2Left < 10) {
+                    enemy2Direction *= -1;
+                }
+                enemy2.style.left = `${enemy2Left}px`;
+            }, 20);
+        }
+
+        function enemyShoot(enemy) {
+            const bullet = document.createElement("div");
+            bullet.className = "bullet";
+            bullet.style.top = `${enemy.offsetTop + 25}px`;
+            bullet.style.left = `${enemy.offsetLeft + 20}px`;
+            gameContainer.appendChild(bullet);
+
+            const interval = setInterval(() => {
+                if (!gameActive) {
+                    removeBullet(bullet, interval);
+                    return;
+                }
+                
+                bullet.style.top = `${bullet.offsetTop + 5}px`;  // Bullets move downward
+
+                // Check if bullet hits player
+                if (checkCollision(bullet, player)) {
+                    gameActive = false;
+                    endMessage.textContent = "Game Over!";
+                    endMessage.style.display = "block";
+                    playAgainButton.style.display = "block";
+                    removeBullet(bullet, interval);
+                } else if (bullet.offsetTop > gameContainer.offsetHeight) {
+                    removeBullet(bullet, interval);
+                }
+            }, 20);
+        }
+    </script>
+</body>
+</html>

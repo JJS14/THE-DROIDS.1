@@ -1,0 +1,181 @@
+.tableauPlaceholder {
+    transform: scale(0.7);
+    transform-origin: top left;
+    margin-bottom: -200px;  /* Adjust this value based on how much space you want to remove */
+    padding-left: 75px;
+}
+
+img[src*="21gun"] {
+    width: 400px;
+    height: auto;
+}
+
+.back-to-top-wrapper {
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
+    clear: both;
+}
+
+.back-to-top {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #000;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.back-to-top:hover {
+    background-color: #333;
+}
+
+.twoone {
+    width: 300px;
+    height: auto;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.content-section {
+    text-align: center;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #222;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(255,255,255,0.1);
+    border: 1px solid #444;
+}
+
+.content-section h2 {
+    margin-bottom: 15px;
+    color: white;
+}
+
+.content-section h1 {
+    color: white;
+}
+
+.header-section {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 30px;
+    background-color: #222;
+    border-bottom: 1px solid #444;
+    box-shadow: 0 2px 5px rgba(255,255,255,0.1);
+    position: relative;
+}
+
+.header-section h1 {
+    max-width: 800px;  /* Keep text from getting too wide */
+    margin: 0 auto;  /* Center the text */
+    color: white;
+}
+
+.image-section {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #ddd;
+}
+
+.video-sidebar {
+    position: absolute;
+    width: fit-content;
+    right: 20px;
+    top: 1200px;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    box-shadow: 0 2px 5px rgba(255,255,255,0.1);
+}
+
+.video-caption {
+    text-align: center;
+    padding: 10px;
+    color: white;
+    font-size: 18px;
+    background-color: #222;
+    border-radius: 10px;
+    border: 1px solid #444;
+    box-shadow: 0 2px 5px rgba(255,255,255,0.1);
+    margin-top: 10px;
+    width: 280px;  /* Match video width */
+    position: absolute;
+    right: 20px;
+    top: 1400px;
+}
+
+.list-sidebar {
+    position: absolute;
+    width: 280px;
+    right: 20px;
+    top: 600px;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    box-shadow: 0 2px 5px rgba(255,255,255,0.1);
+}
+
+.list-sidebar h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.list-sidebar ol {
+    margin-left: 20px;
+    color: white;
+}
+
+.list-sidebar ul {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.list-sidebar li {
+    margin-bottom: 5px;
+}
+
+.back-button-wrapper {
+    position: absolute;
+    left: 20px;
+    top: 600px;  /* Adjust this to align with the right sidebar */
+}
+
+.back-button {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #000;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #333;
+}

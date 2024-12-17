@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/21styles.css">
+</head>
+<body>
+   <div class="header-section">
+        <a href="../index.html" class="back-button">Back</a>
+        <h1> Why 21 Savage Will Be the Next President of the United States</h1>
+   </div>
+   
+   <div class="image-section">
+        <img src="../Images/21gun.webp" alt="21 Savage" class="twoone">
+   </div>
+
+    <div class="content-section">
+        <h2>Advocate for Marginalized Communities</h2>
+        21 Savage's personal journey as an immigrant and his experiences with systemic challenges make him a strong
+        advocate for marginalized communities. Born in London and raised in Atlanta, he has faced significant obstacles,
+        including his 2019 arrest by U.S. Immigration and Customs Enforcement (ICE) for overstaying his visa. This experience
+        highlighted the harsh realities of immigration policies in the U.S., particularly for Black immigrants. As
+        president, his firsthand understanding of these struggles could inspire meaningful reforms to create a more
+        equitable immigration system.
+    </div>
+
+    <div class="content-section">
+        <h2>Commitment to Youth Empowerment</h2>
+        Through initiatives like the "21 Savage Bank Account Campaign," he has demonstrated a commitment to empowering young people with financial literacy skills. This program teaches kids how to save, budget, and build wealth—critical
+        tools for breaking cycles of poverty. A president with this focus on youth empowerment could prioritize policies
+        that address economic inequality and provide resources for underserved communities.
+    </div>
+
+    <div class="content-section">
+        <h2>Philanthropic Leadership</h2>
+        21 Savage has consistently used his platform to give back to his community. From hosting annual back-to-school
+        drives in Atlanta to launching free online financial literacy programs during the COVID-19 pandemic, he has
+        shown a deep commitment to helping others. His philanthropic efforts reflect a leadership style grounded in compassion
+        and action, qualities that are essential for any effective president. He's also very religious, to read where he
+        gets his religion, click this <a href="https://www.biblegateway.com/"> link</a>
+    </div>
+
+    <div class="content-section">
+        <h2>Electoral College Reform</h2>
+        <div class='tableauPlaceholder' id='viz1733355147496' style='position: relative'>
+            <noscript><a href='#'><img alt='The American Political Universe ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Po&#47;PoliticalDW&#47;TheAmericanPoliticalUniverse&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='PoliticalDW&#47;TheAmericanPoliticalUniverse' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Po&#47;PoliticalDW&#47;TheAmericanPoliticalUniverse&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1733355147496');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1000px';vizElement.style.height='1227px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+        </div>
+    </div>
+
+    <div class="back-to-top-wrapper">
+        <a href="#top" class="back-to-top">↑ Back to Top</a>
+    </div>
+
+    <div class="list-sidebar">
+        <h2>Campaign Promises</h2>
+        <ol>
+            <li>Immigration Reform
+                <ul>
+                    <li>Streamline visa processes</li>
+                    <li>Create clearer paths to citizenship</li>
+                    <li>Reform ICE procedures</li>
+                </ul>
+            </li>
+            <li>Financial Education
+                <ul>
+                    <li>Mandatory financial literacy in schools</li>
+                    <li>Free online banking courses</li>
+                    <li>Student debt relief programs</li>
+                </ul>
+            </li>
+            <li>Community Development
+                <ul>
+                    <li>Urban youth programs</li>
+                    <li>Arts funding initiatives</li>
+                    <li>Community center development</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="video-sidebar">
+        <iframe 
+            width="280" 
+            height="158" 
+            src="https://www.youtube.com/embed/2ec4Oa2L1fo?si=34NjdPAMMpNwZ6N_" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+    <div class="video-caption">
+        21 Savage is bi-partison. Watch this video to see why.
+    </div>
+
+    <script>
+        const header = document.getElementById('sticky-header');
+        const imageSection = document.getElementById('image-section');
+        
+        window.addEventListener('scroll', () => {
+            const imageSectionBottom = imageSection.offsetTop + imageSection.offsetHeight;
+            
+            if (window.pageYOffset > imageSection.offsetTop && 
+                window.pageYOffset < imageSectionBottom) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+   </script>
+</body>
+</html>
